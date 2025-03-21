@@ -3,6 +3,8 @@
 <head>
     <title>Meshak's Digital Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -137,15 +139,15 @@
             border-radius: 2px;
         }
 
-        /* Center the underline for Certificates and Resume sections */
-        #certificate h2, #resume h2 {
+        /* Center the underline for Certificates, Projects, Resume, and Contact sections */
+        #certificate h2, #projects h2, #resume h2, #contact h2 {
             display: inline-block;
             margin-bottom: 0.5rem;
             text-align: center; /* Ensure the heading text is centered */
             width: 100%; /* Ensure the h2 takes full width for centering */
         }
 
-        #certificate h2::after, #resume h2::after {
+        #certificate h2::after, #projects h2::after, #resume h2::after, #contact h2::after {
             left: 50%;
             transform: translateX(-50%);
             bottom: -5px;
@@ -172,13 +174,13 @@
 
         /* Project Section Styling */
         #projects .project-container {
-            text-align: left;
+            text-align: center; /* Center the content */
         }
 
         #projects .project-container img {
             width: 100%;
             max-width: 450px;
-            margin: 20px 0;
+            margin: 20px auto; /* Center the image */
             border-radius: 10px;
             display: block;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -194,7 +196,7 @@
         .certificate-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center; /* Center the certificate items */
             gap: 20px;
             padding-top: 2rem;
         }
@@ -203,7 +205,7 @@
             flex: 1;
             min-width: 300px;
             max-width: 300px;
-            text-align: left;
+            text-align: center; /* Center the content inside each item */
         }
 
         .certificate-item h3 {
@@ -215,7 +217,7 @@
         .certificate-container img {
             width: 100%;
             max-width: 300px;
-            margin: 0;
+            margin: 0 auto; /* Center the image */
             border-radius: 10px;
             display: block;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -230,6 +232,40 @@
         /* Resume Section */
         #resume .section-content {
             text-align: center; /* Center the content in the Resume section */
+        }
+
+        /* Contact Section */
+        #contact .section-content {
+            text-align: center; /* Center the content in the Contact section */
+        }
+
+        #contact .contact-details {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        #contact .contact-details li {
+            margin: 1rem 0; /* Increased spacing between items */
+            font-size: 1.1rem;
+        }
+
+        #contact .contact-details li a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        #contact .contact-details li a:hover {
+            color: #8ec5fc;
+            transform: scale(1.1); /* Slight scale effect on hover */
+        }
+
+        #contact .contact-details li a i {
+            margin-right: 8px; /* Space between icon and text */
+            font-size: 1.3rem; /* Slightly larger icon size */
         }
 
         /* Footer */
@@ -332,6 +368,7 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certificate">Certificates</a></li>
         <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
@@ -363,7 +400,7 @@
 
 <section id="projects">
     <div class="section-content project-container">
-        <h2>Projects</h2>
+        <h2>Project</h2>
         <img src="proj.jpg" alt="Project Image">
         <a href="https://statisticsquiz2025.netlify.app/" class="download-button">View Project</a>
     </div>
@@ -387,6 +424,29 @@
     <div class="section-content">
         <h2>Resume</h2>
         <a href="resume.pdf" target="_blank" class="download-button">Download CV</a>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-content">
+        <h2>Contact Me</h2>
+        <ul class="contact-details">
+            <li>
+                <a href="tel:+919042554396">
+                    <i class="fas fa-phone"></i> +91 9042554396
+                </a>
+            </li>
+            <li>
+                <a href="mailto:jebasrajameshak@gmail.com">
+                    <i class="fas fa-envelope"></i> jebasrajameshak@gmail.com
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/meshak-22" target="_blank">
+                    <i class="fab fa-github"></i> github.com/meshak-22
+                </a>
+            </li>
+        </ul>
     </div>
 </section>
 
