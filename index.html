@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Meshak's Digital Portfolio</title>
@@ -21,11 +21,24 @@
         /* Header Styling */
         header {
             background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
-            text-align: center;
             padding: 3rem 0;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             animation: fadeInDown 1s ease-in-out;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .header-text {
+            text-align: center;
         }
 
         .header-content h1 {
@@ -45,9 +58,6 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            position: absolute;
-            top: 80px;
-            left: 50px;
             border: 5px solid #fff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -122,9 +132,23 @@
             height: 4px;
             background: #8ec5fc;
             position: absolute;
-            bottom: -10px;
+            bottom: -5px;
             left: 0;
             border-radius: 2px;
+        }
+
+        /* Center the underline for Certificates and Resume sections */
+        #certificate h2, #resume h2 {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Ensure the heading text is centered */
+            width: 100%; /* Ensure the h2 takes full width for centering */
+        }
+
+        #certificate h2::after, #resume h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
         }
 
         /* Buttons */
@@ -148,39 +172,64 @@
 
         /* Project Section Styling */
         #projects .project-container {
-            text-align: center;
+            text-align: left;
         }
 
         #projects .project-container img {
             width: 100%;
-            max-width: 300px; /* Smaller size */
-            margin: 20px auto;
+            max-width: 450px;
+            margin: 20px 0;
             border-radius: 10px;
             display: block;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7); /* Highlight with glow */
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
         }
 
         #projects .project-container img:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(142, 197, 252, 1); /* Enhanced glow on hover */
+            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
         }
 
         /* Certificate Section */
         .certificate-container {
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+            padding-top: 2rem;
+        }
+
+        .certificate-item {
+            flex: 1;
+            min-width: 300px;
+            max-width: 300px;
+            text-align: left;
+        }
+
+        .certificate-item h3 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #2c3e50;
         }
 
         .certificate-container img {
             width: 100%;
-            max-width: 700px;
-            margin: 20px 0;
+            max-width: 300px;
+            margin: 0;
             border-radius: 10px;
-            transition: transform 0.3s ease;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
         }
 
         .certificate-container img:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
+        }
+
+        /* Resume Section */
+        #resume .section-content {
+            text-align: center; /* Center the content in the Resume section */
         }
 
         /* Footer */
@@ -218,6 +267,11 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
             .header-content h1 {
                 font-size: 2rem;
             }
@@ -225,8 +279,6 @@
             .profile-picture {
                 width: 80px;
                 height: 80px;
-                top: 60px;
-                left: 20px;
             }
 
             nav ul {
@@ -243,7 +295,18 @@
             }
 
             #projects .project-container img {
-                max-width: 200px; /* Smaller on mobile */
+                max-width: 300px;
+            }
+
+            .certificate-container {
+                flex-direction: column;
+                gap: 30px;
+                padding-top: 1.5rem;
+            }
+
+            .certificate-item {
+                min-width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -254,8 +317,10 @@
 <header>
     <div class="header-content">
         <img src="mesak.jpg" alt="Meshak's Profile Picture" class="profile-picture">
-        <h1>MESHAK JEBASRAJA.B</h1>
-        <p>B.Sc CS with AI Student</p>
+        <div class="header-text">
+            <h1>MESHAK JEBASRAJA.B</h1>
+            <p>B.Sc CS with AI Student</p>
+        </div>
     </div>
 </header>
 
@@ -280,7 +345,8 @@
 <section id="education">
     <div class="section-content">
         <h2>Education</h2>
-        <p>A.M Jain College, Madras University - CS with AI</p>
+        <p><strong>School:</strong> Holy Family Convent Matriculation Higher Secondary School, Keelkattalai</p>
+        <p><strong>College:</strong> Agurchand Manmull Jain College, Chennai - B.Sc CS with AI</p>
     </div>
 </section>
 
@@ -306,20 +372,21 @@
 <section id="certificate">
     <div class="section-content certificate-container">
         <h2>Certificates</h2>
-        <h3>Japanese Endowed Course Certificate</h3>
-        <img src="cer.jpg" alt="Japanese Endowed Course Certificate">
-        <hr>
-        <h3>IBM Skills Build Certificate</h3>
-        <img src="cer1.jpg" alt="IBM Skills Build Certificate">
+        <div class="certificate-item">
+            <img src="cer.jpg" alt="Japanese Endowed Course Certificate">
+            <h3>Japanese Endowed Course Certificate</h3>
+        </div>
+        <div class="certificate-item">
+            <img src="cer1.jpg" alt="IBM Skills Build Certificate">
+            <h3>IBM Skills Build Certificate</h3>
+        </div>
     </div>
 </section>
 
 <section id="resume">
     <div class="section-content">
-        <center>
-            <h2>Resume</h2> <!-- Removed "Joins" typo -->
-            <a href="resume.pdf" target="_blank" class="download-button">Download CV</a>
-        </center>
+        <h2>Resume</h2>
+        <a href="resume.pdf" target="_blank" class="download-button">Download CV</a>
     </div>
 </section>
 
@@ -328,30 +395,33 @@
 </footer>
 
 <script>
-    // Smooth scrolling
+    // Smooth scrolling with offset for sticky nav
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Add active class to nav links on scroll
+    // Add active class to nav links on scroll with adjusted offset
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('nav ul li a');
+        const navHeight = document.querySelector('nav').offsetHeight;
         let current = '';
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (pageYOffset >= sectionTop) {
+            const sectionTop = section.offsetTop - navHeight - 20;
+            if (window.pageYOffset >= sectionTop) {
                 current = section.getAttribute('id');
             }
         });
