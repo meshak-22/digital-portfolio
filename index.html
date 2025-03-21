@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Meshak's Digital Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2c3e50;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #34495e;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: 80px;
+            left: 50px;
+            border: 5px solid #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navigation Styling */
+        nav {
+            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: #fff;
+            color: #8ec5fc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
+        .section-content {
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-content h2::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background: #8ec5fc;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .download-button {
+            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+            color: #2c3e50;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Project Section Styling */
+        #projects .project-container {
+            text-align: center;
+        }
+
+        #projects .project-container img {
+            width: 100%;
+            max-width: 300px; /* Smaller size */
+            margin: 20px auto;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7); /* Highlight with glow */
+        }
+
+        #projects .project-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(142, 197, 252, 1); /* Enhanced glow on hover */
+        }
+
+        /* Certificate Section */
+        .certificate-container {
+            text-align: center;
+        }
+
+        .certificate-container img {
+            width: 100%;
+            max-width: 700px;
+            margin: 20px 0;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+            padding: 1.5rem;
+            text-align: center;
+            color: #2c3e50;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .profile-picture {
+                width: 80px;
+                height: 80px;
+                top: 60px;
+                left: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .section-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            #projects .project-container img {
+                max-width: 200px; /* Smaller on mobile */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <img src="mesak.jpg" alt="Meshak's Profile Picture" class="profile-picture">
+        <h1>MESHAK JEBASRAJA.B</h1>
+        <p>B.Sc CS with AI Student</p>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificate">Certificates</a></li>
+        <li><a href="#resume">Resume</a></li>
+    </ul>
+</nav>
+
+<section id="about">
+    <div class="section-content">
+        <h2>About Me</h2>
+        <p>I'm a <b>Computer Science student</b> specializing in AI, with expertise in Python and Java. Passionate about machine learning, data science, and intelligent systems, I love solving complex problems with AI-driven solutions. I explore NLP, computer vision, and emerging AI technologies, striving to drive innovation and shape the future of AI.</p>
+    </div>
+</section>
+
+<section id="education">
+    <div class="section-content">
+        <h2>Education</h2>
+        <p>A.M Jain College, Madras University - CS with AI</p>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="section-content">
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML</li>
+            <li>Python</li>
+            <li>Java</li>
+        </ul>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="section-content project-container">
+        <h2>Projects</h2>
+        <img src="proj.jpg" alt="Project Image">
+        <a href="https://statisticsquiz2025.netlify.app/" class="download-button">View Project</a>
+    </div>
+</section>
+
+<section id="certificate">
+    <div class="section-content certificate-container">
+        <h2>Certificates</h2>
+        <h3>Japanese Endowed Course Certificate</h3>
+        <img src="cer.jpg" alt="Japanese Endowed Course Certificate">
+        <hr>
+        <h3>IBM Skills Build Certificate</h3>
+        <img src="cer1.jpg" alt="IBM Skills Build Certificate">
+    </div>
+</section>
+
+<section id="resume">
+    <div class="section-content">
+        <center>
+            <h2>Resume</h2> <!-- Removed "Joins" typo -->
+            <a href="resume.pdf" target="_blank" class="download-button">Download CV</a>
+        </center>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Meshak Jebasraja B</p>
+</footer>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add active class to nav links on scroll
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (pageYOffset >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
