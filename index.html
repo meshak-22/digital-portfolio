@@ -1,123 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Digital Portfolio</title>
+    <title>Meshak's Digital Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
-            color: #333;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styling */
         header {
             background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
-            color: #333;
+            padding: 3rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .header-text {
             text-align: center;
-            padding: 2rem 0;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .header-content h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2c3e50;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #34495e;
         }
 
         .profile-picture {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            position: absolute;
-            top: 75px;
-            left: 75px;
-            border: 3px solid white;
+            border: 5px solid #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .profile-picture:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navigation Styling */
         nav {
             background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            text-align: center;
             padding: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
         }
 
         nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         nav ul li {
-            display: inline;
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         nav ul li a {
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
+        nav ul li a:hover {
+            background: #fff;
+            color: #8ec5fc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
         .section-content {
             background: linear-gradient(to right, #fdfbfb, #ebedee);
-            padding: 2rem;
-            margin: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            text-align: justify;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
         }
 
+        .section-content h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-content h2::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background: #8ec5fc;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        /* Center the underline for Certificates, Projects, Resume, and Contact sections */
+        #certificate h2, #projects h2, #resume h2, #contact h2 {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Ensure the heading text is centered */
+            width: 100%; /* Ensure the h2 takes full width for centering */
+        }
+
+        #certificate h2::after, #projects h2::after, #resume h2::after, #contact h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
+        }
+
+        /* Buttons */
         .download-button {
             background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            color: #333;
-            padding: 0.7rem 1.5rem;
+            color: #2c3e50;
+            padding: 0.8rem 2rem;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 25px;
             display: inline-block;
-            margin-top: 10px;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         .download-button:hover {
             background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
+        /* Project Section Styling */
+        #projects .project-container {
+            text-align: center; /* Center the content */
+        }
+
+        #projects .project-container img {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto; /* Center the image */
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
+        }
+
+        #projects .project-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
+        }
+
+        /* Certificate Section */
         .certificate-container {
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the certificate items */
+            gap: 20px;
+            padding-top: 2rem;
+        }
+
+        .certificate-item {
+            flex: 1;
+            min-width: 300px;
+            max-width: 300px;
+            text-align: center; /* Center the content inside each item */
+        }
+
+        .certificate-item h3 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #2c3e50;
         }
 
         .certificate-container img {
-            width: 80%;
-            max-width: 600px;
-            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto; /* Center the image */
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
         }
 
+        .certificate-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
+        }
+
+        /* Resume Section */
+        #resume .section-content {
+            text-align: center; /* Center the content in the Resume section */
+        }
+
+        /* Contact Section */
+        #contact .section-content {
+            text-align: center; /* Center the content in the Contact section */
+        }
+
+        #contact .contact-details {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        #contact .contact-details li {
+            margin: 1rem 0; /* Increased spacing between items */
+            font-size: 1.1rem;
+        }
+
+        #contact .contact-details li a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        #contact .contact-details li a:hover {
+            color: #8ec5fc;
+            transform: scale(1.1); /* Slight scale effect on hover */
+        }
+
+        #contact .contact-details li a i {
+            margin-right: 8px; /* Space between icon and text */
+            font-size: 1.3rem; /* Slightly larger icon size */
+        }
+
+        /* Footer */
         footer {
-            text-align: center;
-            padding: 1rem 0;
             background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            color: #333;
-            margin-top: 20px;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            color: #2c3e50;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
         }
 
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .profile-picture {
+                width: 80px;
+                height: 80px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .section-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            #projects .project-container img {
+                max-width: 300px;
+            }
+
+            .certificate-container {
+                flex-direction: column;
+                gap: 30px;
+                padding-top: 1.5rem;
+            }
+
+            .certificate-item {
+                min-width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
     <div class="header-content">
-        <img src="images/profile.jpg" alt="Your Profile Picture" class="profile-picture">
-        <h1>MESHAK JEBASRAJA.B</h1>
-        <p>B.Sc CS with AI Student</p>
+        <img src="mesak.jpg" alt="Meshak's Profile Picture" class="profile-picture">
+        <div class="header-text">
+            <h1>MESHAK JEBASRAJA.B</h1>
+            <p>B.Sc CS with AI Student</p>
+        </div>
     </div>
 </header>
 
@@ -129,6 +368,7 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certificate">Certificates</a></li>
         <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
@@ -142,7 +382,8 @@
 <section id="education">
     <div class="section-content">
         <h2>Education</h2>
-        <p>A.M Jain College, Madras University - CS with AI</p>
+        <p><strong>School:</strong> Holy Family Convent Matriculation Higher Secondary School, Keelkattalai</p>
+        <p><strong>College:</strong> Agurchand Manmull Jain College, Chennai - B.Sc CS with AI</p>
     </div>
 </section>
 
@@ -158,60 +399,97 @@
 </section>
 
 <section id="projects">
-    <div class="section-content">
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="#">E-Cart Website</a></li>
-            <li><a href="#">Cloud Security IBM</a></li>
-            <li><a href="#">IBM Chatbot</a></li>
-            <li><a href="#">College Portal</a></li>
-        </ul>
+    <div class="section-content project-container">
+        <h2>Project</h2>
+        <img src="proj.jpg" alt="Project Image">
+        <a href="https://statisticsquiz2025.netlify.app/" class="download-button">View Project</a>
     </div>
 </section>
 
 <section id="certificate">
-    <div class="section-content">
+    <div class="section-content certificate-container">
         <h2>Certificates</h2>
-
-        <!-- Certificate 1 -->
-        <h2>Japanese Endowed Course Certificate</h2>
-        <img src="MESHAK JEBASRAJA.B-23AI022_page-0001.jpg" alt="Japanese Endowed Course Certificate" width="600">
-        <p><a href="MESHAK JEBASRAJA.B-23AI022_page-0001.jpg" download>Download Certificate 1</a></p>
-
-        <hr>
-
-        <!-- Certificate 2 -->
-        <h2>IBM Skills Build Certificate</h2>
-        <img src="SkillsBuild_TNSDC-FEWD-Cloud_page-0001.jpg" alt="IBM Skills Build Certificate" width="600">
-        <p><a href="SkillsBuild_TNSDC-FEWD-Cloud_page-0001.jpg" download>Download Certificate 2</a></p>
+        <div class="certificate-item">
+            <img src="cer.jpg" alt="Japanese Endowed Course Certificate">
+            <h3>Japanese Endowed Course Certificate</h3>
+        </div>
+        <div class="certificate-item">
+            <img src="cer1.jpg" alt="IBM Skills Build Certificate">
+            <h3>IBM Skills Build Certificate</h3>
+        </div>
     </div>
 </section>
 
-
 <section id="resume">
     <div class="section-content">
-        <center>
-            <h2>Resume</h2>
-            <a href="file.pdf" target="_blank" class="download-button">Download CV</a>
-        </center>
+        <h2>Resume</h2>
+        <a href="resume.pdf" target="_blank" class="download-button">Download CV</a>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-content">
+        <h2>Contact Details</h2>
+        <ul class="contact-details">
+            <li>
+                <a href="tel:+919042554396">
+                    <i class="fas fa-phone"></i> +91 9042554396
+                </a>
+            </li>
+            <li>
+                <a href="mailto:jebasrajameshak@gmail.com">
+                    <i class="fas fa-envelope"></i> jebasrajameshak@gmail.com
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/meshak-22" target="_blank">
+                    <i class="fab fa-github"></i> github.com/meshak-22
+                </a>
+            </li>
+        </ul>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2025 Meshak Jebasraja B</p>
+    <p>© 2025 Meshak Jebasraja B</p>
 </footer>
 
 <script>
+    // Smooth scrolling with offset for sticky nav
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
                 window.scrollTo({
-                    top: targetElement.offsetTop,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
+            }
+        });
+    });
+
+    // Add active class to nav links on scroll with adjusted offset
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const navHeight = document.querySelector('nav').offsetHeight;
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - navHeight - 20;
+            if (window.pageYOffset >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
             }
         });
     });
