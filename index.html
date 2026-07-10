@@ -1,499 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <title>Meshak's Digital Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Add Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header Styling */
-        header {
-            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
-            padding: 3rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            animation: fadeInDown 1s ease-in-out;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .header-text {
-            text-align: center;
-        }
-
-        .header-content h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #2c3e50;
-        }
-
-        .header-content p {
-            font-size: 1.2rem;
-            color: #34495e;
-        }
-
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .profile-picture:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Navigation Styling */
-        nav {
-            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            background: #fff;
-            color: #8ec5fc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Section Styling */
-        .section-content {
-            background: linear-gradient(to right, #fdfbfb, #ebedee);
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 1000px;
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        .section-content h2 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .section-content h2::after {
-            content: '';
-            width: 50px;
-            height: 4px;
-            background: #8ec5fc;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            border-radius: 2px;
-        }
-
-        /* Center the underline for Certificates, Projects, Resume, and Contact sections */
-        #certificate h2, #projects h2, #resume h2, #contact h2 {
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            text-align: center; /* Ensure the heading text is centered */
-            width: 100%; /* Ensure the h2 takes full width for centering */
-        }
-
-        #certificate h2::after, #projects h2::after, #resume h2::after, #contact h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -5px;
-        }
-
-        /* Buttons */
-        .download-button {
-            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            color: #2c3e50;
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 25px;
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .download-button:hover {
-            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Project Section Styling */
-        #projects .project-container {
-            text-align: center; /* Center the content */
-        }
-
-        #projects .project-container img {
-            width: 100%;
-            max-width: 450px;
-            margin: 20px auto; /* Center the image */
-            border-radius: 10px;
-            display: block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
-        }
-
-        #projects .project-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
-        }
-
-        /* Certificate Section */
-        .certificate-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Center the certificate items */
-            gap: 20px;
-            padding-top: 2rem;
-        }
-
-        .certificate-item {
-            flex: 1;
-            min-width: 300px;
-            max-width: 300px;
-            text-align: center; /* Center the content inside each item */
-        }
-
-        .certificate-item h3 {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            color: #2c3e50;
-        }
-
-        .certificate-container img {
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto; /* Center the image */
-            border-radius: 10px;
-            display: block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(142, 197, 252, 0.7);
-        }
-
-        .certificate-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(142, 197, 252, 1);
-        }
-
-        /* Resume Section */
-        #resume .section-content {
-            text-align: center; /* Center the content in the Resume section */
-        }
-
-        /* Contact Section */
-        #contact .section-content {
-            text-align: center; /* Center the content in the Contact section */
-        }
-
-        #contact .contact-details {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
-
-        #contact .contact-details li {
-            margin: 1rem 0; /* Increased spacing between items */
-            font-size: 1.1rem;
-        }
-
-        #contact .contact-details li a {
-            color: #2c3e50;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        #contact .contact-details li a:hover {
-            color: #8ec5fc;
-            transform: scale(1.1); /* Slight scale effect on hover */
-        }
-
-        #contact .contact-details li a i {
-            margin-right: 8px; /* Space between icon and text */
-            font-size: 1.3rem; /* Slightly larger icon size */
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-            padding: 1.5rem;
-            text-align: center;
-            color: #2c3e50;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .header-content h1 {
-                font-size: 2rem;
-            }
-
-            .profile-picture {
-                width: 80px;
-                height: 80px;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
-
-            .section-content {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            #projects .project-container img {
-                max-width: 300px;
-            }
-
-            .certificate-container {
-                flex-direction: column;
-                gap: 30px;
-                padding-top: 1.5rem;
-            }
-
-            .certificate-item {
-                min-width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Meshak's Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <img src="meshak.jpg" alt="Meshak's Profile Picture" class="profile-picture">
-        <div class="header-text">
-            <h1>MESHAK JEBASRAJA.B</h1>
-            <p>Artificial Intelligence Developer</p>
-        </div>
-    </div>
-</header>
-
-<nav>
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certificate">Certificates</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Meshak Jebasraja<span></span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-</nav>
+    <button class="toggle-btn" onclick="toggleTheme()" title="Toggle dark/light mode">
+      <span class="toggle-icon sun-icon">☀️</span>
+      <span class="toggle-icon moon-icon">🌙</span>
+    </button>
+  </nav>
 
-<section id="about">
-    <div class="section-content">
-        <h2>About Me</h2>
-        <p>I'm a <b>Computer Science student</b> specializing in AI, with expertise in Python and Java. Passionate about machine learning, data science, and intelligent systems, I love solving complex problems with AI-driven solutions. I explore NLP, computer vision, and emerging AI technologies, striving to drive innovation and shape the future of AI.</p>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h3>Hello, I'm</h3>
+      <h1>Meshak Jebasraja</h1>
+      <h2>And I'm a <span class="typed-text" id="typed"></span></h2>
+      <p class="hero-desc">
+        I'm Meshak Jebasraja, a B.Sc. Computer Science graduate specializing in Artificial Intelligence. I'm passionate about web development and enjoy building responsive, user-friendly websites while continuously learning new technologies.
+      </p>
+      <div class="hero-btns">
+        <a href="D:\Updated Digital portfolio\Meshak's Resume 22.pdf"class="btn btn-primary" target="_blank">Download CV</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://github.com/meshak-22" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:jebasrajameshak@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+919042554396"><i class="fas fa-phone"></i></a>
+      </div>
     </div>
-</section>
-
-<section id="education">
-    <div class="section-content">
-        <h2>Education</h2>
-        <p><strong>School:</strong> Holy Family Convent Matriculation Higher Secondary School, Keelkattalai</p>
-        <p><strong>College:</strong> Agurchand Manmull Jain College, Chennai - B.Sc CS with AI</p>
-    </div>
-</section>
-
-<section id="skills">
-    <div class="section-content">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>Python</li>
-            <li>Java</li>
-        </ul>
-    </div>
-</section>
-
-<section id="projects">
-    <div class="section-content project-container">
-        <h2>Project</h2>
-        <img src="proj 1.jpg" alt="Project Image">
-        <a href="https://statisticsquiz2025.netlify.app/" class="download-button">View Project</a>
-    </div>
-</section>
-
-<section id="certificate">
-    <div class="section-content certificate-container">
-        <h2>Certificates</h2>
-        <div class="certificate-item">
-            <img src="cer.jpg" alt="Japanese Endowed Course Certificate">
-            <h3>Japanese Endowed Course Certificate</h3>
+    <div class="hero-img">
+      <div class="img-ring">
+        <div class="img-inner">
+          <img src="D:\Updated Digital portfolio\Image.jpg"
+               alt="Meshak Jebasraja"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">MJ</div>
         </div>
-        <div class="certificate-item">
-            <img src="cer1.jpg" alt="IBM Skills Build Certificate">
-            <h3>IBM Skills Build Certificate</h3>
-        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="resume">
-    <div class="section-content">
-        <h2>Resume</h2>
-        <a href="My Resume .pdf" target="_blank" class="download-button">Download CV</a>
+  <!-- ABOUT -->
+  <section id="about" class="alt-bg">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="underline"></div>
+    <div class="about-box">
+      <p>
+I'm Meshak Jebasraja, <strong>Computer Science graduate</strong> specializing in Artificial Intelligence with a passion for web development.
+I love creating clean, responsive, and user-friendly websites.
+Currently seeking opportunities to learn, contribute, and grow as a developer.</p>
     </div>
-</section>
+  </section>
 
-<section id="contact">
-    <div class="section-content">
-        <h2>Contact Details</h2>
-        <ul class="contact-details">
-            <li>
-                <a href="tel:+919042554396">
-                    <i class="fas fa-phone"></i> +91 9042554396
-                </a>
-            </li>
-            <li>
-                <a href="mailto:jebasrajameshak@gmail.com">
-                    <i class="fas fa-envelope"></i> jebasrajameshak@gmail.com
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/meshak-22" target="_blank">
-                    <i class="fab fa-github"></i> github.com/meshak-22
-                </a>
-            </li>
-        </ul>
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="section-title"><span>Education</span></h2>
+    <div class="underline"></div>
+    <div class="edu-cards">
+      <div class="edu-card">
+        <i class="fas fa-school"></i>
+        <h3>School</h3>
+        <p>Holy Family Convent Matriculation Higher Secondary School, Keelkattalai</p>
+      </div>
+      <div class="edu-card">
+        <i class="fas fa-university"></i>
+        <h3>College</h3>
+        <p>Agurchand Manmull Jain College, Chennai<br/><strong>B.Sc CS with Artificial Intelligence</strong></p>
+      </div>
     </div>
-</section>
+  </section>
 
-<footer>
-    <p>© 2025 Meshak Jebasraja B</p>
-</footer>
+  <!-- SKILLS -->
+  <section id="skills" class="alt-bg">
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <div class="underline"></div>
+    <div class="skills-wrap">
+      <div class="skill-pill">HTML</div>
+      <div class="skill-pill">CSS</div>
+      <div class="skill-pill">JavaScript</div>
+      <div class="skill-pill">Python</div>
+    </div>
+  </section>
 
-<script>
-    // Smooth scrolling with offset for sticky nav
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const navHeight = document.querySelector('nav').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title">My <span>Projects</span></h2>
+    <div class="underline"></div>
+    <div class="proj-card">
+      <img src="D:\Updated Digital portfolio\proj 1.jpg"
+           alt="Statistics Quiz Project"
+           onerror="this.src='https://placehold.co/600x200/1565c0/ffffff?text=Statistics+Quiz+Project'"/>
+      <div class="proj-info">
+        <h3>Statistics Quiz App</h3>
+        <a href="https://statisticsquiz2025.netlify.app/" target="_blank">View Project</a>
+      </div>
+    </div>
+  </section>
 
-    // Add active class to nav links on scroll with adjusted offset
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav ul li a');
-        const navHeight = document.querySelector('nav').offsetHeight;
-        let current = '';
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="alt-bg">
+    <h2 class="section-title">My <span>Certificates</span></h2>
+    <div class="underline"></div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <img src="D:\Updated Digital portfolio\cer.jpg"
+             alt="Japanese Endowed Course Certificate"
+             onerror="this.src='https://placehold.co/300x180/1565c0/ffffff?text=Certificate'"/>
+        <p>Japanese Endowed Course Certificate</p>
+      </div>
+      <div class="cert-card">
+        <img src="D:\Updated Digital portfolio\cer1.jpg"
+             alt="IBM Skills Build Certificate"
+             onerror="this.src='https://placehold.co/300x180/1565c0/ffffff?text=Certificate'"/>
+        <p>IBM Skills Build Certificate</p>
+      </div>
+    </div>
+  </section>
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - navHeight - 20;
-            if (window.pageYOffset >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact <span>Me</span></h2>
+    <div class="underline"></div>
+    <div class="contact-wrap">
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <p>Phone</p>
+        <a href="tel:+919042554396">+91 9042554396</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <p>Email</p>
+        <a href="mailto:jebasrajameshak@gmail.com">jebasrajameshak@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-github"></i>
+        <p>GitHub</p>
+        <a href="https://github.com/meshak-22" target="_blank">github.com/meshak-22</a>
+      </div>
+    </div>
+  </section>
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-</script>
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Meshak Jebasraja B. All rights reserved.
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
